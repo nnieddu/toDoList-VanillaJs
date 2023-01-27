@@ -165,7 +165,10 @@ margin-top: 15px;
 	width: 40px
 }
 p {
+	margin-top: 5px;
+	padding: 0;
 	color: #ff0000;
+	font-weight: bold;
 }
 /* --------- Media queries --------- */
 @media screen and (max-height: 1079px) {
