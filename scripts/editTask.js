@@ -11,7 +11,7 @@ export function editListItem(listItem) {
       const inputDueDate = document.createElement("input");
       inputDueDate.setAttribute("type", "date");
       if (data.end_date) inputDueDate.valueAsDate = new Date(data.end_date);
-      inputDueDate.className += " task-end-date";
+      inputDueDate.classList.add("task-end-date");
 
       const saveButton = document.createElement("img");
       saveButton.innerText = "Save";
@@ -23,6 +23,7 @@ export function editListItem(listItem) {
       listItem.appendChild(saveButton);
 
       saveButton.addEventListener("mousedown", () => {
+
         if (inputDueDate.value) {
           const updatedTask = {
             end_date: new Date(inputDueDate.value).toISOString(),
@@ -35,22 +36,16 @@ export function editListItem(listItem) {
             body: JSON.stringify(updatedTask),
           }).catch((error) => console.error(error));
 
-          let text = listItem.getElementsByTagName("span")[1].innerText;
-          let newDueDate =
-            "<strong> " +
-            new Date(inputDueDate.value).toLocaleDateString() +
-            " <strong/>";
-          let startIndex = text.indexOf(" | ") + "Due date : ".length;
-          let oldDueDate = text.substring(startIndex);
-          listItem.getElementsByTagName("span")[1].innerHTML = text.replace(
-            oldDueDate,
-            newDueDate
-          );
+					let parts = listItem.getElementsByTagName("span")[1].innerHTML.split("|");
+					parts[1] = " Due date : " + " <strong> " + new Date(inputDueDate.value).toLocaleDateString() +" <strong/>";
+					listItem.getElementsByTagName("span")[1].innerHTML = parts.join(" |");
 
 					listItem.classList.remove("late");
 					listItem.classList.remove("sameday");
-          if (new Date(data.start_date).getTime() > new Date(updatedTask.end_date).getTime()) listItem.className += " late";
-          if (new Date(data.start_date).getTime() === new Date(updatedTask.end_date).getTime()) listItem.className += " sameday";
+          if (new Date(data.start_date).getTime() > new Date(updatedTask.end_date).getTime()) 
+						listItem.className += " late";
+          if (new Date(data.start_date).getTime() === new Date(updatedTask.end_date).getTime()) 
+						listItem.className += " sameday";
         }
 
         listItem.removeChild(inputDueDate);
