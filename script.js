@@ -1,19 +1,17 @@
-import { addTask, appendTask, taskList } from "./scripts/addTask.js";
+import { addTask, appendTask, taskList, createTaskForm } from "./scripts/addTask.js";
 import { deleteTask } from "./scripts/deleteTask.js";
 import { editListItem } from "./scripts/editTask.js";
+import { filterTasks, searchField, dateField } from "./scripts/searchTask.js";
 
-const createTaskForm = document.getElementById("create-task-form");
 createTaskForm.addEventListener("submit", (event) => addTask(event));
+searchField.addEventListener("input", filterTasks);
+dateField.addEventListener("input", filterTasks);
 
-// <!-- Get task from SQLite DB -->
+// <!--- Get task from SQLite DB --->
 fetch("http://127.0.0.1:9000/v1/tasks")
   .then((response) => {
-    if (response.status === 200) {
-      return response.json();
-    } else {
-      document.getElementById("emptyTaskList").style.display = "block";
-      console.error("Error: No task found");
-    }
+    if (response.status === 200) return response.json();
+    document.getElementById("emptyTaskList").style.display = "block";
   })
   .then((data) => {
     if (data) {
@@ -24,8 +22,7 @@ fetch("http://127.0.0.1:9000/v1/tasks")
   })
   .catch((error) => console.error("Error: " + error));
 
-
-// <!-- Edit / Delete buttons handler -->
+// <!--- Edit / Delete buttons handler --->
 function editOrDeleteListItem(listItem) {
   if (listItem.querySelector(".menu")) {
     return;
@@ -49,7 +46,7 @@ function editOrDeleteListItem(listItem) {
   deleteButton.setAttribute("src", "./style/trash.svg");
   deleteButton.setAttribute("alt", "Edit");
   deleteButton.addEventListener("click", () => {
-    deleteTask(listItem);
+    deleteTask(listItem, taskList);
   });
 
   menu.appendChild(editButton);
