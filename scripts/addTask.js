@@ -27,7 +27,6 @@ function createUniqueLabel() {
 export function appendTask(task) {
   let li = document.createElement("li");
   li.setAttribute("data-label", task.label);
-  li.setAttribute("data-end-date", task.end_date);
   li.setAttribute("data-start-date", task.start_date);
   li = checkDates(task, li);
   taskList.appendChild(li);
@@ -36,11 +35,11 @@ export function appendTask(task) {
   li.appendChild(spanDecsription);
   spanDecsription.innerHTML = `${task.description} <br>`;
   li.appendChild(spanDates);
-  spanDates.innerHTML = `Created : <strong>${new Date(
-    task.start_date
-  ).toLocaleDateString()}<strong/> | Due date : <strong>${new Date(
-    task.end_date
-  ).toLocaleDateString()}<strong/>`;
+  spanDates.innerHTML = `Created : <strong>${new Date(task.start_date).toLocaleDateString()}<strong/>`;
+	if (task.end_date) {
+		li.setAttribute("data-end-date", task.end_date);
+		spanDates.innerHTML += ` | Due date : <strong>${new Date(task.end_date).toLocaleDateString()}<strong/>`;
+	}
   document.getElementById("emptyTaskList").style.display = "none";
 }
 
