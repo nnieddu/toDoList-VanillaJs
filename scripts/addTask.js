@@ -46,21 +46,15 @@ export function appendTask(task) {
 
 export function addTask(clickEvent) {
   clickEvent.preventDefault();
-
   let formData = new FormData(createTaskForm);
-
-  let startDate = new Date();
-  startDate.setMinutes(0);
-  startDate.setHours(1);
-  startDate.setSeconds(0);
-  startDate.setMilliseconds(0);
 
   const taskToAdd = {
     label: createUniqueLabel(),
     description: formData.get("task-description"),
-    start_date: startDate.toISOString(),
-    end_date: new Date(formData.get("task-end-date")).toISOString(),
+    start_date: new Date(formData.get("task-start-date")).toISOString(),
   };
+  let endDate = formData.get("task-end-date");
+  if (endDate) taskToAdd.end_date = new Date(endDate).toISOString();
 
   fetch("http://127.0.0.1:9000/v1/tasks", {
     method: "POST",
@@ -70,16 +64,18 @@ export function addTask(clickEvent) {
     body: JSON.stringify(taskToAdd),
   })
     .then((response) => {
-      if (response.ok) {
-        return fetch(`http://127.0.0.1:9000/v1/tasks/${taskToAdd.label}`, {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(taskToAdd),
-        });
-      } else {
-        throw new Error("Error in POST request");
+      if (endDate) {
+        if (response.ok) {
+          return fetch(`http://127.0.0.1:9000/v1/tasks/${taskToAdd.label}`, {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(taskToAdd),
+          });
+        } else {
+          throw new Error("Error in POST request");
+        }
       }
     })
     .then(() => {
