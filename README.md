@@ -6,14 +6,18 @@ En HTML le tag <var> existe, mais ne sert qu'à représenter une variable dans u
 
 En CSS :  
 A l'interieur d'un bloc :  
-  
+```
 --nom-de-la-variable : valeur;
-  
+```
+
 ou pour déclarer une ou plusieurs variables globales :
-  
+
+```
 root {
   --nom-de-la-variable : valeur;
-  
+}
+```
+
 --------------------------------------------------------------
 
 ### 2. Quelle est la différence entre ces différentes méthodes de stockage : a. Cookie  b. SessionStorage c. LocalStorage
@@ -30,17 +34,19 @@ Enfin, la différence est également la taille maximale disponible pour chacun d
 --------------------------------------------------------------
 
 ### 3. Quelles sont les règles CSS qui doivent être ajoutées pour appliquer un ellipsis sur un texte (réduire dynamiquement la longueur d’un texte afin qu’il ne dépasse pas son container et sans qu’il n’aille à la ligne) ?
-  
+
+```
 white-space: nowrap;  
 overflow: hidden;  
 text-overflow: ellipsis;
-  
+```
+
 --------------------------------------------------------------
-  
+
 ### 4. Vous êtes face à une liste de 1000 éléments (``<li></li>``) pour lesquels chacun de ces éléments déclenche au clic une alerte avec le texte du contenu. Comment et pourquoi optimisez-vous l’écoute d'événement dans ce cas ?
-  
+
 Dans ce cas, j’attache un seul gestionnaire d'événements à un élément parent et utilise la propriété "target" de l'événement pour déterminer quel élément a déclenché l'événement.
-  
+
 --------------------------------------------------------------
 
 ### 5. Quelles sont les différences entre les types de variable suivants : var, let et const ?
