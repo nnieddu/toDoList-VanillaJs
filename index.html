@@ -27,6 +27,27 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
 		<div id = "app">
+			<div id="appTitle">
+				<img src="./style/logo-Ringover.svg" alt="logo Ringover">
+				<h1>TO DO LIST</h1>
+			</div>
+			<!-- La création de tâche -->
+			<div class="task-creation">
+				<form id="create-task-form">
+					<input type="text" placeholder="Task description..." id="task-description" name="task-description" required/><br>
+					<input type="date" id="task-end-date" name="task-end-date" required />
+					<input type="submit" value="Create Task" />
+				</form>
+			</div>
+			<!-- Un champ de recherche par texte et par date -->
+			<div class="task-search">
+				<input type="text" id="search-field" placeholder="Search a task..."><br>
+				<input type="date" id="search-date-field"><br>
+			</div>
+		</div>
+		<!-- Une liste des tâches existantes -->
+		<div id = "tasks-div">
+			<ul id="task-list"><h3 id="emptyTaskList">No task for the moment &#128526;</h3></ul>
 		</div>
   </body>
 </html>
