@@ -1,7 +1,8 @@
 export const taskList = document.getElementById("task-list");
+export const createTaskForm = document.getElementById("create-task-form");
 var labelnbr = 0;
 
-// ---- Un système de validation de tâche par date de fin ----
+// ------- Un système de validation de tâche par date de fin ------->
 function checkDates(task, li) {
   const startDate = new Date(task.start_date);
   const endDate = new Date(task.end_date);
@@ -10,7 +11,7 @@ function checkDates(task, li) {
   return li;
 }
 
-// <!-- La création de tâche -->
+// --------------------- La création de tâche --------------------- >
 export function appendTask(task) {
   let li = document.createElement("li");
   li.setAttribute("data-label", labelnbr.toString());
