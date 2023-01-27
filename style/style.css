@@ -164,6 +164,9 @@ margin-top: 15px;
 	top: 10px;
 	width: 40px
 }
+p {
+	color: #ff0000;
+}
 /* --------- Media queries --------- */
 @media screen and (max-height: 1079px) {
   * {
