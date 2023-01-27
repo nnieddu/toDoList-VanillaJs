@@ -30,7 +30,6 @@ export function appendTask(task) {
     task.end_date
   ).toLocaleDateString()}<strong/>`;
   document.getElementById("emptyTaskList").style.display = "none";
-  labelnbr++;
 }
 
 export function addTask(clickEvent) {
@@ -50,6 +49,8 @@ export function addTask(clickEvent) {
     start_date: startDate.toISOString(),
     end_date: new Date(formData.get("task-end-date")).toISOString(),
   };
+
+  labelnbr++;
 
   fetch("http://127.0.0.1:9000/v1/tasks", {
     method: "POST",
@@ -71,7 +72,8 @@ export function addTask(clickEvent) {
         throw new Error("Error in POST request");
       }
     })
+    .then(() => {
+      appendTask(taskToAdd);
+    })
     .catch((error) => console.error(error));
-
-  appendTask(taskToAdd);
 }
