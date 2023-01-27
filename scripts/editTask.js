@@ -28,7 +28,7 @@ export function editListItem(listItem) {
         end_date: new Date(inputDueDate.value).toISOString(),
       };
 
-      fetch(`http://127.0.0.1:9000/v1/tasks/${listItem.getAttribute("data-label")}`, {
+      fetch(`http://127.0.0.1:9000/v1/tasks/${updatedTask.label}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
