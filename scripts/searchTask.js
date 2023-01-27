@@ -14,10 +14,11 @@ export function filterTasks() {
   for (let i = 0; i < tasks.length; i++) {
     const task = tasks[i];
     const taskText = task.getElementsByTagName("span")[0].textContent.toLowerCase();
-    const taskDate = task.getAttribute("data-end-date");
+    const taskStartDate = task.getAttribute("data-start-date");
+    const taskEndDate = task.getAttribute("data-end-date");
     if (
       taskText.indexOf(searchTerm) !== -1 &&
-      (dateValue === "" || taskDate === dateValue)
+      (dateValue === "" || taskEndDate === dateValue || taskStartDate === dateValue)
     ) {
       task.style.display = "block";
     } else {
