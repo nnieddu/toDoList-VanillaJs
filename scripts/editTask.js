@@ -1,9 +1,6 @@
 // <! ------------- La possibilité d'editer une tâche ------------- >
 
 export function editListItem(listItem) {
-  const input = document.createElement("input");
-  input.value = listItem.getElementsByTagName("span")[0].innerText;
-
   const inputDueDate = document.createElement("input");
   inputDueDate.setAttribute("type", "date");
   inputDueDate.valueAsDate = new Date(listItem.getAttribute("data-end-date"));
@@ -14,21 +11,15 @@ export function editListItem(listItem) {
   saveButton.setAttribute("src", "./style/save.svg");
   saveButton.setAttribute("alt", "Save");
 
-  listItem.innerText = "";
-  listItem.appendChild(input);
   listItem.appendChild(inputDueDate);
   listItem.appendChild(saveButton);
 
   saveButton.addEventListener("click", () => {
-    if (input.value && inputDueDate.value) {
+    if (inputDueDate.value) {
       const updatedTask = {
-        label: listItem.getAttribute("data-label"),
-        description: input.value,
-        start_date: new Date(listItem.getAttribute("data-start-date")).toISOString(),
         end_date: new Date(inputDueDate.value).toISOString(),
       };
-
-      fetch(`http://127.0.0.1:9000/v1/tasks/${updatedTask.label}`, {
+      fetch(`http://127.0.0.1:9000/v1/tasks/${listItem.getAttribute("data-label")}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -36,14 +27,18 @@ export function editListItem(listItem) {
         body: JSON.stringify(updatedTask),
       }).catch((error) => console.error(error));
 
-			listItem.getElementsByTagName("span")[0].innerText = input.value;
-			listItem.getElementsByTagName("span")[1].innerText = inputDueDate.value;
+      let text = listItem.getElementsByTagName("span")[1].innerText;
+      let newDueDate =
+        "<strong> " + new Date(inputDueDate.value).toLocaleDateString() + " <strong/>";
+      let startIndex = text.indexOf("Due date : ") + "Due date : ".length;
+      let oldDueDate = text.substring(startIndex);
+      listItem.getElementsByTagName("span")[1].innerHTML = text.replace(
+        oldDueDate,
+        newDueDate
+      );
 
-      listItem.removeChild(input);
       listItem.removeChild(inputDueDate);
       listItem.removeChild(saveButton);
-    }
-		else
-			alert("Task and due date can't be empty !")
+    } else alert("Task due date can't be empty !");
   });
 }
