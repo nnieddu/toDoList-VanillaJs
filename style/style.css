@@ -119,7 +119,7 @@ ul li.sameday {
   }
 }
 @media screen and (min-width: 600px) {
-	#task-end-date::before {
+	.task-end-date::before {
 		content: "Due date : ";
 		white-space: pre;
 	}
