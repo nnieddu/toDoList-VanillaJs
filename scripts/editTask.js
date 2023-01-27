@@ -12,6 +12,9 @@ export function editListItem(listItem) {
       inputDueDate.setAttribute("type", "date");
       if (data.end_date) inputDueDate.valueAsDate = new Date(data.end_date);
       inputDueDate.classList.add("task-end-date");
+			const date = new Date(data.start_date);
+			const isoDate = `${date.getFullYear()}-${("0" + (date.getMonth() + 1)).slice(-2)}-${("0" + date.getDate()).slice(-2)}`;
+			inputDueDate.setAttribute("min", isoDate);
 
       const saveButton = document.createElement("img");
       saveButton.innerText = "Save";
