@@ -116,6 +116,12 @@ li {
   overflow: hidden;
 	border-bottom: solid 1px rgba(187, 187, 187, 0.6);
 }
+.expand{
+  white-space : unset !important;
+  text-overflow : unset !important;
+  word-break : break-word !important;
+}
+
 li:hover {
   background: rgba(187, 187, 187, 0.6);
 	cursor: pointer;
@@ -131,7 +137,8 @@ ul li.sameday {
 
 .menu img {
 	margin-right: 15px;
-	width: 6%;
+	margin-left: 5px;
+	width: 5%;
 }
 .menu img {
 margin-top: 15px;
@@ -139,8 +146,8 @@ margin-top: 15px;
 .saveBtn {
   position: relative;
   left: 30px;
-	top: 15px;
-	width: 45px
+	top: 10px;
+	width: 40px
 }
 /* --------- Media queries --------- */
 @media screen and (max-height: 1079px) {
