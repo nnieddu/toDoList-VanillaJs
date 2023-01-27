@@ -57,6 +57,10 @@ input[type="text"] {
 input[type="date"] {
 	border-radius: 0 0 8px 8px;
 }
+.task-start-date {
+	border-radius: 0 !important;
+	border-bottom: none;
+}
 input[type="submit"] {
 	margin-top: 10px;
   background-color: #00527c;
@@ -121,6 +125,11 @@ ul li.sameday {
 @media screen and (min-width: 600px) {
 	.task-end-date::before {
 		content: "Due date : ";
+		white-space: pre;
+	}
+	
+	.task-start-date::before {
+		content: "Start date : ";
 		white-space: pre;
 	}
 	
