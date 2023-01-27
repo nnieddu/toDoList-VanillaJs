@@ -46,7 +46,7 @@ export function appendTask(task) {
 export function addTask(clickEvent) {
   clickEvent.preventDefault();
   let formData = new FormData(createTaskForm);
-
+	
   const taskToAdd = {
     label: createUniqueLabel(),
     description: formData.get("task-description"),
@@ -79,6 +79,7 @@ export function addTask(clickEvent) {
     })
     .then(() => {
       appendTask(taskToAdd);
+			createTaskForm.reset();
     })
     .catch((error) => console.error(error));
 }
