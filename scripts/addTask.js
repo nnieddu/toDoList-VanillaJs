@@ -16,6 +16,7 @@ export function appendTask(task) {
   let li = document.createElement("li");
   li.setAttribute("data-label", labelnbr.toString());
   li.setAttribute("data-end-date", task.end_date);
+  li.setAttribute("data-start-date", task.start_date);
   li = checkDates(task, li);
   taskList.appendChild(li);
   let spanDecsription = document.createElement("span");
