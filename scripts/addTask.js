@@ -1,6 +1,5 @@
 export const taskList = document.getElementById("task-list");
 export const createTaskForm = document.getElementById("create-task-form");
-var labelnbr = 0;
 
 // ------- Un système de validation de tâche par date de fin ------->
 function checkDates(task, li) {
@@ -12,9 +11,22 @@ function checkDates(task, li) {
 }
 
 // --------------------- La création de tâche --------------------- >
+function createUniqueLabel() {
+  const listItems = document.querySelectorAll("li");
+  let existingLabels = [];
+  listItems.forEach((li) => {
+    existingLabels.push(li.getAttribute("data-label"));
+  });
+  let newLabel = 0;
+  do {
+    newLabel++;
+  } while (existingLabels.includes(newLabel.toString()));
+  return newLabel.toString();
+}
+
 export function appendTask(task) {
   let li = document.createElement("li");
-  li.setAttribute("data-label", labelnbr.toString());
+  li.setAttribute("data-label", task.label);
   li.setAttribute("data-end-date", task.end_date);
   li.setAttribute("data-start-date", task.start_date);
   li = checkDates(task, li);
@@ -44,7 +56,7 @@ export function addTask(clickEvent) {
   startDate.setMilliseconds(0);
 
   const taskToAdd = {
-    label: labelnbr.toString(),
+    label: createUniqueLabel(),
     description: formData.get("task-description"),
     start_date: startDate.toISOString(),
     end_date: new Date(formData.get("task-end-date")).toISOString(),
@@ -74,6 +86,4 @@ export function addTask(clickEvent) {
       appendTask(taskToAdd);
     })
     .catch((error) => console.error(error));
-
-		labelnbr++;
 }
