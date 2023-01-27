@@ -8,6 +8,8 @@ export function editListItem(listItem) {
   })
     .then((response) => response.json())
     .then((data) => {
+			const lineBreak = document.createElement("br");
+			lineBreak.classList.add("lineBrak");
       const inputDueDate = document.createElement("input");
       inputDueDate.setAttribute("type", "date");
       if (data.end_date) inputDueDate.valueAsDate = new Date(data.end_date);
@@ -21,11 +23,11 @@ export function editListItem(listItem) {
       saveButton.setAttribute("alt", "Save");
 			saveButton.classList.add("saveBtn");
 
+      listItem.appendChild(lineBreak);
       listItem.appendChild(inputDueDate);
       listItem.appendChild(saveButton);
 
       saveButton.addEventListener("mousedown", () => {
-
         if (inputDueDate.value) {
           const updatedTask = {
             end_date: new Date(inputDueDate.value).toISOString(),
@@ -41,7 +43,6 @@ export function editListItem(listItem) {
 					let parts = listItem.getElementsByTagName("span")[1].innerHTML.split("|");
 					parts[1] = " Due date : " + " <strong> " + new Date(inputDueDate.value).toLocaleDateString() +" <strong/>";
 					listItem.getElementsByTagName("span")[1].innerHTML = parts.join(" |");
-
 					listItem.classList.remove("late");
 					listItem.classList.remove("sameday");
           if (new Date(data.start_date).getTime() > new Date(updatedTask.end_date).getTime()) 
@@ -50,6 +51,7 @@ export function editListItem(listItem) {
 						listItem.className += " sameday";
         }
 
+        listItem.removeChild(lineBreak);
         listItem.removeChild(inputDueDate);
         listItem.removeChild(saveButton);
       });

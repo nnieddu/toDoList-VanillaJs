@@ -23,12 +23,15 @@ fetch("http://127.0.0.1:9000/v1/tasks")
 
 // <!--- Edit & Delete menu EventHandler --->
 document.addEventListener("mousedown", (e) => {
-  let menu = taskList.querySelector(".menu");
-  let inputDueDate = taskList.querySelector(".task-end-date");
-  let saveButton = taskList.querySelector(".saveBtn");
+  const menu = taskList.querySelector(".menu");
+  const lineBreak = taskList.querySelector(".lineBrak");
+  const inputDueDate = taskList.querySelector(".task-end-date");
+  const saveButton = taskList.querySelector(".saveBtn");
+
   if (inputDueDate && saveButton && e.target != inputDueDate) {
-    saveButton.parentNode.removeChild(saveButton);
+    inputDueDate.parentNode.removeChild(lineBreak);
     inputDueDate.parentNode.removeChild(inputDueDate);
+    saveButton.parentNode.removeChild(saveButton);
   }
   if (menu) {
     menu.parentNode.classList.remove("expand");

@@ -149,12 +149,11 @@ ul li.sameday {
 }
 
 img {
-	min-width: 30px;
+	width: 35px;
 }
 .menu img {
 	margin-right: 15px;
 	margin-left: 5px;
-	width: 5%;
 }
 .menu img {
 margin-top: 15px;
