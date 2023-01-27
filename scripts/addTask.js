@@ -50,8 +50,6 @@ export function addTask(clickEvent) {
     end_date: new Date(formData.get("task-end-date")).toISOString(),
   };
 
-  labelnbr++;
-
   fetch("http://127.0.0.1:9000/v1/tasks", {
     method: "POST",
     headers: {
@@ -76,4 +74,6 @@ export function addTask(clickEvent) {
       appendTask(taskToAdd);
     })
     .catch((error) => console.error(error));
+
+		labelnbr++;
 }
