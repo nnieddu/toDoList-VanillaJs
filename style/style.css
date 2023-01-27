@@ -125,7 +125,7 @@ ul li.sameday {
 	}
 	
 	#search-date-field::before {
-		content: "Search by date : ";
+		content: "Search by due date : ";
 		white-space: pre;
 	}
 }
