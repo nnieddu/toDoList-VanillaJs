@@ -112,10 +112,11 @@ li {
   list-style-type: none;
   transition: 0.3s;
 	white-space: nowrap;
-  overflow: hidden;
 	text-overflow: ellipsis;
+  overflow: hidden;
 	border-bottom: solid 1px rgba(187, 187, 187, 0.6);
 }
+
 li:hover {
   background: rgba(187, 187, 187, 0.6);
 	cursor: pointer;
@@ -129,8 +130,19 @@ ul li.sameday {
 	color:white;
 }
 
+.menu {
+  position: relative;
+	width: 45px;
+	right: 0;
+	top: 5px;
+}
+.saveBtn {
+  position: relative;
+  left: 30px;
+	top: 15px;
+	width: 45px
+}
 /* --------- Media queries --------- */
-
 @media screen and (max-height: 1079px) {
   * {
 		overflow-y: auto;
