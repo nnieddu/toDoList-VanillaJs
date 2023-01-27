@@ -7,15 +7,14 @@
 
 *{
 	font-family: 'Open Sans', sans-serif;
-	margin: 0;
-	padding: 0;
 	overflow-y: hidden;
 	
 	scrollbar-width: thin;
 	scrollbar-color: rgba(100, 100, 100, 0.4) rgba(100, 100, 100, 0.3);
+  font-size: 1.15rem;
 }
 *::-webkit-scrollbar {
-  width: 5px;
+  width: 8px;
 }
 *::-webkit-scrollbar-track {
   background: rgba(100, 100, 100, 0.3);
@@ -25,10 +24,8 @@
   border-radius: 20px;
 }
 
-
 body {
-  font-size: 18px;
-  min-width: 400px;
+  min-width: 300px;
 	min-height: 100vh;
 	background-image: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72);
 }
@@ -38,7 +35,7 @@ body {
 	border-radius: 12px;
 	width: 80%;
 	max-width: 1000px;
-	margin: 2vh auto 30px auto;
+	margin: 2vh auto;
 	padding: 20px;
 	color: rgb(56, 56, 56);
 }
@@ -53,14 +50,13 @@ body {
 }
 
 .task-creation , .task-search {
-  padding: 20px 40px;
+  padding: 2vh 2vw;
   text-align: center;
 }
 
 input {
   width: 75%;
   padding: 8px 15px;
-  font-size: 18px;
 	box-sizing: border-box;
 	border: solid rgba(0, 0, 0, 0.5) 1px;
 }
@@ -70,11 +66,9 @@ input[type="text"] {
 }
 input[type="date"] {
 	cursor: pointer;
+	appearance: auto;
+	-webkit-appearance: textfield; /* iphone */
 	border-radius: 0 0 8px 8px;
-}
-.task-start-date {
-	border-radius: 0 !important;
-	border-bottom: none;
 }
 input[type="submit"] {
 	margin-top: 10px;
@@ -86,7 +80,25 @@ input[type="submit"] {
   transition: 0.25s;
 }
 input[type="submit"]:hover {
-  background-color: #0577af;
+	background-color: #0577af;
+}
+.task-start-date {
+	border-radius: 0 !important;
+	border-bottom: none;
+}
+.task-end-date::before {
+	content: "Due date : ";
+	white-space: pre;
+}
+
+.task-start-date::before {
+	content: "Start date : ";
+	white-space: pre;
+}
+
+#search-date-field::before {
+	content: "Search by date : ";
+	white-space: pre;
 }
 
 #tasks-div {
@@ -136,6 +148,9 @@ ul li.sameday {
 	color:white;
 }
 
+img {
+	min-width: 30px;
+}
 .menu img {
 	margin-right: 15px;
 	margin-left: 5px;
@@ -156,19 +171,8 @@ margin-top: 15px;
 		overflow-y: auto;
   }
 }
-@media screen and (min-width: 600px) {
-	.task-end-date::before {
-		content: "Due date : ";
-		white-space: pre;
-	}
-	
-	.task-start-date::before {
-		content: "Start date : ";
-		white-space: pre;
-	}
-	
-	#search-date-field::before {
-		content: "Search by date : ";
-		white-space: pre;
-	}
+@media screen and (max-width: 600px) {
+	* {
+		font-size: 1rem;
+  }
 }
