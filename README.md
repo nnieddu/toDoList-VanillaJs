@@ -3,6 +3,7 @@
 ### Faux
 
 En HTML le tag <var> existe, mais ne sert qu'à représenter une variable dans une expression mathématique ou un texte lié à la programmation, il ne sert pas à stocker de données.
+Il est possible de stocker des données avec HTML5 en utilisant les attributs préfixés par "data-", mais ces données ne peuvent être modifiées et manipulées que par l'utilisation d'un langage dynamique tel que JavaScript.
 
 En CSS :  
 A l'interieur d'un bloc :  
