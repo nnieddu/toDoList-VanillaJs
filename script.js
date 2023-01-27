@@ -1,10 +1,13 @@
 import { addTask, appendTask, taskList, createTaskForm } from "./scripts/addTask.js";
 import { filterTasks, searchField, dateField } from "./scripts/searchTask.js";
 import { editOrDeleteListItem } from "./scripts/menuButtonHandler.js";
+import { blockEarlierDates } from "./scripts/datesHandler.js";
 
 createTaskForm.addEventListener("submit", (event) => addTask(event));
 searchField.addEventListener("input", filterTasks);
 dateField.addEventListener("input", filterTasks);
+document.querySelector(".task-start-date").addEventListener("input", () => blockEarlierDates(createTaskForm));
+document.querySelector(".task-end-date").addEventListener("input", () => blockEarlierDates(createTaskForm));
 
 // <!--- Get task from SQLite DB --->
 fetch("http://127.0.0.1:9000/v1/tasks")
@@ -42,16 +45,3 @@ document.addEventListener("mousedown", (e) => {
     editOrDeleteListItem(listItem, taskList);
   }
 });
-
-function checkDates() {
-  const startDate = document.querySelector(".task-start-date").value;
-  const endDate = document.querySelector(".task-end-date").value;
-  document.querySelector(".task-end-date").min = startDate;
-  if (startDate && endDate && new Date(startDate) > new Date(endDate)) {
-    alert("Due date cannot be earlier than start date.");
-    document.querySelector(".task-end-date").value = "";
-  }
-}
-
-document.querySelector(".task-start-date").addEventListener("input", checkDates);
-document.querySelector(".task-end-date").addEventListener("input", checkDates);

@@ -1,14 +1,6 @@
 export const taskList = document.getElementById("task-list");
 export const createTaskForm = document.getElementById("create-task-form");
-
-// ------- Un système de validation de tâche par date de fin ------->
-function checkDates(task, li) {
-  const startDate = new Date(task.start_date);
-  const endDate = new Date(task.end_date);
-  if (startDate.getTime() > endDate.getTime()) li.className += " late";
-  if (startDate.getTime() === endDate.getTime()) li.className += " sameday";
-  return li;
-}
+import { checkDates } from "./datesHandler.js";
 
 // --------------------- La création de tâche --------------------- >
 function createUniqueLabel() {
@@ -28,14 +20,14 @@ export function appendTask(task) {
   let li = document.createElement("li");
   li.setAttribute("data-label", task.label);
   li.setAttribute("data-start-date", task.start_date);
-  li = checkDates(task, li);
+  li = checkDates(task.end_date, li);
   taskList.appendChild(li);
   let spanDecsription = document.createElement("span");
   let spanDates = document.createElement("span");
   li.appendChild(spanDecsription);
   spanDecsription.innerHTML = `${task.description} <br>`;
   li.appendChild(spanDates);
-  spanDates.innerHTML = `Created : <strong>${new Date(task.start_date).toLocaleDateString()}<strong/>`;
+  spanDates.innerHTML = `Started : <strong>${new Date(task.start_date).toLocaleDateString()}<strong/>`;
 	if (task.end_date) {
 		li.setAttribute("data-end-date", task.end_date);
 		spanDates.innerHTML += ` | Due date : <strong>${new Date(task.end_date).toLocaleDateString()}<strong/>`;
