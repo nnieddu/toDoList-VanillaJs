@@ -1,5 +1,5 @@
 {
-  "name": "ToDoList NIEDDU Nicolas Ringover",
+  "name": "ToDoList",
   "short_name": "ToDoList",
   "icons": [
     {
@@ -13,8 +13,9 @@
       "type": "image/png"
   }
   ],
-  "start_url": ".",
+  "start_url": "https://nnieddu.github.io/",
   "display": "standalone",
   "theme_color": "#000000",
-  "background_color": "#ffffff"
+	"prefer_related_applications": false,
+	"background_color": "#004d7a"
 }

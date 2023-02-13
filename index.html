@@ -5,11 +5,11 @@
     <meta name="theme-color" content="#004d7a" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta property="og:title" content="ToDoList NIEDDU Nicolas Ringover" />
+    <meta property="og:title" content="ToDoList" />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="./public/ogImage.png" />
-    <meta property="og:url" content="https://www.ringover.fr/" />
-    <meta property="og:description" content="ToDoList de NIEDDU Nicolas pour Ringover" />
+    <!-- <meta property="og:image" content="./public/" /> -->
+    <meta property="og:url" content="https://nnieddu.github.io/" />
+    <meta property="og:description" content="ToDoList" />
     <link rel="manifest" href="./public/manifest.json" />
     <link rel="apple-touch-icon" sizes="180x180" href="./public/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="./public/favicon-32x32.png" />
@@ -19,31 +19,29 @@
     <link rel="shortcut icon" href="./public/favicon.ico" />
     <meta name="msapplication-TileColor" content="#004d7a" />
     <meta name="msapplication-config" content="./public/browserconfig.xml" />
-    <meta name="description" content="My ToDoList for Ringover" />
-    <title>ToDoList Nicolas NIEDDU, Ringover</title>
-    <link rel="stylesheet" type="text/css" href="./style/style.css" />
-		<script type="module" src="script.js" defer></script>
+    <meta name="description" content="ToDoList" />
+    <title>ToDoList</title>
+		<link rel="stylesheet" type="text/css" href="./style/style.css" />
+		<script type="module" src="script.js" ></script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
 		<div id = "app">
 			<div id="appTitle">
-				<img src="./style/logo-Ringover.svg" alt="logo Ringover">
+				<img src="./public/NN.png" width="50px" height="50px" alt="logo">
 				<h1>TO DO LIST</h1>
 			</div>
 			<!-- La création de tâche -->
-			<div class="task-creation">
 				<form id="create-task-form">
-					<input type="text" placeholder="Task description..." id="task-description" name="task-description" required/><br>
-					<input type="date" max="9999-12-31" class="task-start-date" name="task-start-date" required />
-					<input type="date" max="9999-12-31" class="task-end-date" name="task-end-date" />
-					<input type="submit" value="Create Task" />
+					<input type="text" aria-label="Task description" placeholder="Task description..." id="task-description" name="task-description" required /><br>
+					<input type="date" aria-label="Start date" max="9999-12-31" class="task-start-date" name="task-start-date" required />
+					<input type="date" aria-label="Due date" max="9999-12-31" class="task-end-date" name="task-end-date" />
+					<input type="submit" aria-label="Submit, create task" value="Create Task" />
 				</form>
-			</div>
 			<!-- Un champ de recherche par texte et par date -->
 			<div class="task-search">
-				<input type="text" id="search-field" placeholder="Search a task..."><br>
-				<input type="date" max="9999-12-31" id="search-date-field"><br>
+				<input type="text" aria-label="Search with task texte" id="search-field" placeholder="Search a task..."><br>
+				<input type="date" aria-label="Search by date" max="9999-12-31" id="search-date-field"><br>
 			</div>
 		</div>
 		<!-- Une liste des tâches existantes -->

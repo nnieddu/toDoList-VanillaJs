@@ -10,14 +10,16 @@ export function editOrDeleteListItem(listItem, taskList) {
   const editButton = document.createElement("img");
   editButton.setAttribute("src", "./style/edit.svg");
   editButton.setAttribute("alt", "Edit");
+
+	const deleteButton = document.createElement("img");
+	deleteButton.setAttribute("src", "./style/trash.svg");
+	deleteButton.setAttribute("alt", "Edit");
+
   editButton.addEventListener("mousedown", () => {
     listItem.removeChild(menu);
-    editListItem(listItem);
+    editListItem(listItem, menu, editButton, deleteButton);
   });
 
-  const deleteButton = document.createElement("img");
-  deleteButton.setAttribute("src", "./style/trash.svg");
-  deleteButton.setAttribute("alt", "Edit");
   deleteButton.addEventListener("mousedown", () => {
     deleteTask(listItem, taskList);
   });

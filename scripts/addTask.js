@@ -38,6 +38,7 @@ export function appendTask(task) {
 export function addTask(clickEvent) {
   clickEvent.preventDefault();
   let formData = new FormData(createTaskForm);
+	console.log(formData);
 	
   const taskToAdd = {
     label: createUniqueLabel(),
@@ -65,7 +66,7 @@ export function addTask(clickEvent) {
             body: JSON.stringify(taskToAdd),
           });
         } else {
-          throw new Error("Error in POST request");
+          throw new Error("Error in POST request"); // Pas utiliser dans le catch..
         }
       }
     })
